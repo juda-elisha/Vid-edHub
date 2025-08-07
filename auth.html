@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="icon.jpg" type="image/jpg">
+  <meta charset="UTF-8" />
+  <title>Sign In / Sign Up</title>
+  <style>
+    body {
+      background-image: url("C:\Users\Administrator\Desktop\Eduvide\VidEdu.gif");
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #fce4ec);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .auth-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #00b4d8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .toggle-link {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #0077b6;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-box">
+    <h2 id="form-title">Sign In to your VidEduHub account </h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="submitForm()">Continue</button>
+    <div class="toggle-link" onclick="toggleForm()">Don't have an account? Sign up</div>
+  </div>
+
+  <script>
+    let isSignIn = true;
+
+    function toggleForm() {
+      isSignIn = !isSignIn;
+      document.getElementById('form-title').textContent = isSignIn ? 'Sign In' : 'Sign Up';
+      document.querySelector('.toggle-link').textContent = isSignIn
+        ? "Don't have an account? Sign up"
+        : "Already have an account? Sign in";
+    }
+
+    function submitForm() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!username || !password) {
+        alert("Please enter both username and password.");
+        return;
+      }
+
+      if (isSignIn) {
+        const savedPassword = localStorage.getItem(`user_${username}`);
+        if (!savedPassword) {
+          alert("User not found. Please sign up first.");
+        } else if (savedPassword !== password) {
+          alert("Incorrect password. Please try again.");
+        } else {
+          localStorage.setItem("activeUser", username); // ✅ Save user session
+          alert(`Welcome back, ${username}! Redirecting to courses...`);
+          window.location.href = "courses.html"; // ✅ Redirect to courses tab
+        }
+      } else {
+        if (localStorage.getItem(`user_${username}`)) {
+          alert("User already exists. Please sign in.");
+        } else {
+          localStorage.setItem(`user_${username}`, password);
+          alert(`Account created! You can now sign in as ${username}.`);
+          toggleForm(); // switch to sign-in mode
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

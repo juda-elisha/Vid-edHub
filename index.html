@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="icon.jpg" type="image/jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home - Interactive Learning Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    nav {
+      background: linear-gradient(to right, #0077b6, #00b4d8);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      margin: 40px;
+      border-radius: 12px;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .cta button {
+      background: linear-gradient(to right, #ff6f61, #f06292);
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      font-size: 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .cta button:hover {
+      background: linear-gradient(to right, #ff3e2d, #d81b60);
+    }
+  </style>
+</head>
+<body style="background-image: url('VidEdu.gif'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+
+<nav>
+<a href="index.html">Home</a>
+<a href="courses.html">Courses</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>s
+
+  <header>
+    <h1>🚀 Welcome to Your Learning Hub</h1>
+    <p>Interactive video lessons to supercharge your mind!</p>
+  </header>
+
+  <div class="cta">
+    <button onclick="window.location.href='auth.html'">Join Now</button>
+  </div>
+
+  <script>
+    function redirectCourses() {
+      const user = localStorage.getItem("activeUser");
+      if (user) {
+        window.location.href = "courses.html";
+      } else {
+        window.location.href = "auth.html";
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+<section style="margin-top: 30px; background: #eee; padding: 20px; text-align: center;">
+  <p>Ad Placeholder – Your homepage ad (AdSense)</p>
+</section>
+
